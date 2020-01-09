@@ -54,7 +54,7 @@ class DoublyLinkedList:
     def __len__(self):
         return self.length
 
-    def print(self):
+    def _print(self):
         curr_node = self.head
         print(curr_node)
         while curr_node.next is not None:
@@ -161,18 +161,18 @@ class DoublyLinkedList:
         pass
 
 
-first_node = ListNode(100)
+# first_node = ListNode(100)
 
-linked_list = DoublyLinkedList(first_node)
-linked_list.add_to_head(1)
-linked_list.add_to_head(2)
-linked_list.add_to_head(3)
+# linked_list = DoublyLinkedList(first_node)
+# linked_list.add_to_head(1)
+# linked_list.add_to_head(2)
+# linked_list.add_to_head(3)
 
-linked_list.add_to_tail(5)
-linked_list.delete(first_node)
+# linked_list.add_to_tail(5)
+# linked_list.delete(first_node)
 
-linked_list.remove_from_head()
-# linked_list.remove_from_tail()
-linked_list.print()
-print('------------')
-print(len(linked_list))
+# linked_list.remove_from_head()
+# # linked_list.remove_from_tail()
+# linked_list._print()
+# print('------------')
+# print(len(linked_list))

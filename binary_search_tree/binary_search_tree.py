@@ -19,7 +19,7 @@ class BinarySearchTree:
                 self.left = BinarySearchTree(value)
             else:
                 self.left.insert(value)
-        if value > self.value:
+        else:
             if not self.right:
                 self.right = BinarySearchTree(value)
             else:
@@ -46,12 +46,18 @@ class BinarySearchTree:
         if self.right:
             self.right.get_max()
         else:
-            return self.right.value
+            return self.value
 
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach
     def for_each(self, cb):
-        pass
+        if self.right:
+            cb(self)
+            self.right.for_each(cb)
+        if self.left:
+            cb(self)
+            self.left.for_each(cb)
+        return
 
     # DAY 2 Project -----------------------
 
@@ -82,6 +88,6 @@ class BinarySearchTree:
         pass
 
 
-bst = BinarySearchTree(1)
-bst.insert(2)
-bst.insert(3)
+# bst = BinarySearchTree(1)
+# bst.insert(2)
+# bst.insert(3)
