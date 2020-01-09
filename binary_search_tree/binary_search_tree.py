@@ -1,6 +1,5 @@
 from dll_stack import Stack
 from dll_queue import Queue
-from doubly_linked_list import DoublyLinkedList
 import sys
 sys.path.append('../queue_and_stack')
 
@@ -29,11 +28,25 @@ class BinarySearchTree:
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        pass
+        if target < self.value:
+            if not self.left:
+                return False
+            else:
+                self.left.contains(target)
+        if target > self.value:
+            if not self.right:
+                return False
+            else:
+                self.right.contains(target)
+        if target == self.value:
+            return True
 
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        if self.right:
+            self.right.get_max()
+        else:
+            return self.right.value
 
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach
@@ -67,3 +80,8 @@ class BinarySearchTree:
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
         pass
+
+
+bst = BinarySearchTree(1)
+bst.insert(2)
+bst.insert(3)
