@@ -60,6 +60,7 @@ class BinarySearchTree:
     # You may use a recursive or iterative approach
 
     def for_each(self, cb):
+        # depth first search
         cb(self.value)
         if self.left:
             self.left.for_each(cb)
@@ -71,16 +72,35 @@ class BinarySearchTree:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
+        # print current node
+        # go left if you can
+        # go right if you can
         pass
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
+         # iterative solution
+        # create queue to keep track of nodes
+        # place first node on stack
+        # while stack isn't empty:
+        # dequue top node
+        # print node
+        # add children to queue
+        # remember which children to add first bc that changes output order
         pass
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
+        # iterative solution
+        # create stack to keep track of nodes
+        # place first node on stack
+        # while stack isn't empty:
+        # pop top node
+        # print node
+        # add children to stack
+        # remember which children to add first bc that changes output order, go r -> l (smaller)
         pass
 
     # STRETCH Goals -------------------------
