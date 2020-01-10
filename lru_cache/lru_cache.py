@@ -43,9 +43,10 @@ class LRUCache:
             return None
         # if no key in storage, return None
         # read from storage
-
+        node = self.storage[key]
         # move key to tail
-        pass
+        self.order.move_to_end(node)
+        return node.value[1]
 
     """
     Adds the given key-value pair to the cache. The newly-
@@ -59,23 +60,29 @@ class LRUCache:
     """
 
     def set(self, key, value):
-        if key not in self.storage:
-            self.storage[key] = value
-            new_node = ListNode(value)
-            self.length += 1
-            self.order.add_to_tail(new_node)
+        # key does exist
+            # move existing node to tail
+        if key in self.storage:
+            node = self.storage[key]
+            # update value in storage
+            node.value = (key, value)
+            # self.storage[key] = value
+            self.order.move_to_end(node)
+            return
 
-            if self.length > self.limit:
-                self.order.remove_from_head()
-                self.storage.pop(key)
         # key does not exist
             # store key: value in storage
             # create node with key
             # add node to tail of order (DLL)
             # check if limit exceeded
-                # remove lru key:value
-                # remove current head from order
-        # key does exist
-            # update value in storage
-            # move existing node to tail
-        pass
+            # remove lru key:value
+            # remove current head from order
+
+        self.order.add_to_tail((key, value))
+        self.storage[key] = self.order.tail
+        self.length += 1
+
+        if self.length > self.limit:
+            del self.storage[self.order.head.value[0]]
+            self.order.remove_from_head()
+            self.length -= 1
