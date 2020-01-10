@@ -13,21 +13,19 @@ class LRUCache:
     """
 
     def __init__(self, limit=10):
-        self.head = None
-        self.tail = None
-        self.limit = limit
-        self.size = 0
         self.storage = {}
         # fast lookup
-        self.cache = DoublyLinkedList()
+        self.limit = limit
+        self.size = 0
+        self.order = DoublyLinkedList()
         # fast removal
 
-    def print(self):
-        curr_node = self.head
-        print(curr_node)
-        while curr_node.next is not None:
-            curr_node = curr_node.next
-            print(curr_node)
+    # def _print(self):
+    #     curr_node = self.head
+    #     print(curr_node)
+    #     while curr_node.next is not None:
+    #         curr_node = curr_node.next
+    #         print(curr_node)
 
     """
     Retrieves the value associated with the given key. Also
@@ -37,27 +35,8 @@ class LRUCache:
     key-value pair doesn't exist in the cache.
     """
 
-    def maxCapacity(self):
-        if self.size == self.limit:
-            self.cache.remove_from_tail()
-        # self.storage.pop(key)
-        self.size -= 1
-
-    # def recentlyAccessed(self, value):
-    #     self.prev = self.head
-    #     self.next = self.head.next
-
-    #     self.head.next.prev = value
-    #     self.head.next = value
-
     def get(self, key):
-        if key in self.storage:
-            node = self.storage[key]
-            self.cache.delete(node)
-            self.cache.add_to_head(node)
-            return self.storage[key]
-        else:
-            return None
+        pass
 
     """
     Adds the given key-value pair to the cache. The newly-
@@ -71,38 +50,4 @@ class LRUCache:
     """
 
     def set(self, key, value):
-        self.maxCapacity()
-        if key in self.storage:
-            # self.storage[key] = value
-            if not self.head:
-                self.head = ListNode(value)
-                # print('HEAD',self.head)
-                self.tail = ListNode(value)
-        else:
-            node = ListNode(value)
-            old_head = self.head
-            self.head = node
-            self.head.next = old_head
-        # get to see if key exists in cache
-            # update value
-            # move to head of ll
-        # if key in self.storage:
-        # node = self.storage[key]
-        self.storage[key] = value
-        # print(self.storage)
-        self.size += 1
-        # self.cache.delete(node)
-        # self.cache.add_to_head(node)
-
-        # if doesn't exist, add to cache
-        # add to head of ll
-        # check limit
-        # remove tail if needed
-
-
-lru = LRUCache(3)
-lru.set('key1', 'a')
-lru.set('key2', 'b')
-lru.set('key3', 'c')
-lru.set('item4', 'd')
-lru.print()
+        pass
