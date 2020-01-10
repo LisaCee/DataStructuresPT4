@@ -16,9 +16,12 @@ class LRUCache:
         self.storage = {}
         # fast lookup
         self.limit = limit
-        self.size = 0
+        self.length = 0
         self.order = DoublyLinkedList()
         # fast removal
+
+        # most recent at tail
+        # least recent at head
 
     # def _print(self):
     #     curr_node = self.head
@@ -36,6 +39,12 @@ class LRUCache:
     """
 
     def get(self, key):
+        if key not in self.storage:
+            return None
+        # if no key in storage, return None
+        # read from storage
+
+        # move key to tail
         pass
 
     """
@@ -50,4 +59,23 @@ class LRUCache:
     """
 
     def set(self, key, value):
+        if key not in self.storage:
+            self.storage[key] = value
+            new_node = ListNode(value)
+            self.length += 1
+            self.order.add_to_tail(new_node)
+
+            if self.length > self.limit:
+                self.order.remove_from_head()
+                self.storage.pop(key)
+        # key does not exist
+            # store key: value in storage
+            # create node with key
+            # add node to tail of order (DLL)
+            # check if limit exceeded
+                # remove lru key:value
+                # remove current head from order
+        # key does exist
+            # update value in storage
+            # move existing node to tail
         pass
