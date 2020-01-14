@@ -23,13 +23,6 @@ class LRUCache:
         # most recent at tail
         # least recent at head
 
-    # def _print(self):
-    #     curr_node = self.head
-    #     print(curr_node)
-    #     while curr_node.next is not None:
-    #         curr_node = curr_node.next
-    #         print(curr_node)
-
     """
     Retrieves the value associated with the given key. Also
     needs to move the key-value pair to the end of the order
@@ -74,14 +67,14 @@ class LRUCache:
             # store key: value in storage
             # create node with key
             # add node to tail of order (DLL)
-            # check if limit exceeded
-            # remove lru key:value
-            # remove current head from order
 
         self.order.add_to_tail((key, value))
         self.storage[key] = self.order.tail
         self.length += 1
 
+        # check if limit exceeded
+        # remove lru key:value
+        # remove current head from order
         if self.length > self.limit:
             del self.storage[self.order.head.value[0]]
             self.order.remove_from_head()
