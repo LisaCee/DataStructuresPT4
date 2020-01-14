@@ -75,12 +75,17 @@ class BinarySearchTree:
         # go left if you can
         # print current node
         # go right if you can
-        pass
+        if node.left:
+            self.in_order_print(node.left)
+        print(node.value)
+        if node.right:
+            self.in_order_print(node.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
 
     def bft_print(self, node):
+
          # iterative solution
         # create queue to keep track of nodes
         # place first node on stack
@@ -89,17 +94,20 @@ class BinarySearchTree:
         # print node
         # add children to queue
         # remember which children to add first bc that changes output order
+        queue = Queue()
+        queue.enqueue(node)
+        while queue.size > 0:
+            current_node = queue.dequeue().value
+            print(current_node.value)
+            if current_node.left:
+                queue.enqueue(current_node.left)
+            if current_node.right:
+                queue.enqueue(current_node.right)
 
         pass
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
-    def dft_print(self, node):
-        print(self.value)
-        if self.left:
-            self.left.dft_print(self.left)
-        if self.right:
-            self.right.dft_print(self.right)
         # iterative solution
         # create stack to keep track of nodes
         # place first node on stack
@@ -108,12 +116,28 @@ class BinarySearchTree:
         # print node
         # add children to stack
         # remember which children to add first bc that changes output order, go r -> l (smaller)
-        pass
+    def dft_print(self, node):
+        stack = Stack()
+        stack.push(node)
+        while stack.size > 0:
+            current_node = stack.pop().value
+            print(current_node.value)
+            if current_node.left:
+                stack.push(current_node.left)
+            if current_node.right:
+                stack.push(current_node.right)
+        # recursive solution
+        print(self.value)
+        # if self.left:
+        #     self.left.dft_print(self.left)
+        # if self.right:
+        #     self.right.dft_print(self.right)
 
     # STRETCH Goals -------------------------
     # Note: Research may be required
 
     # Print In-order recursive DFT
+
     def pre_order_dft(self, node):
         pass
 
@@ -122,10 +146,9 @@ class BinarySearchTree:
         pass
 
 
-bst = BinarySearchTree(5)
-bst.insert(2)
-bst.insert(1)
-bst.insert(3)
-bst.insert(7)
-bst.dft_print(bst)
-bst.bft_print(bst)
+# bst = BinarySearchTree(5)
+# bst.insert(2)
+# bst.insert(1)
+# bst.insert(3)
+# bst.insert(7)
+# bst.in_order_print(bst)
